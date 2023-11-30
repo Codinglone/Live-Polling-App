@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository
                 .findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid user id " + id));
-        user.setName(userDTO.getName());
+        user.setFirstname(userDTO.getFirstname());
 
         userRepository.save(user);
     }
