@@ -6,7 +6,7 @@ const SignIn = () => {
       <main className="flex flex-row w-full justify-between">
         <section
           id="sectionOne"
-          className="w-1/2 h-[100vh] flex justify-center items-center bg-blue-600"
+          className="w-1/2 h-[100vh] flex justify-center items-center bg-[#0066F7]"
         >
           <div className="flex justify-center">
             <form>
@@ -16,7 +16,7 @@ const SignIn = () => {
                   className="w-[70%] text-left outline-none"
                   placeholder="Enter the code"
                 />
-                <button className="w-[16%] bg-blue-700 h-10 rounded-full"></button>
+                <button className="w-[16%] bg-[#0066F7] h-10 rounded-full"></button>
               </div>
             </form>
           </div>

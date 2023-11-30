@@ -7,7 +7,7 @@ const SignUp = () => {
     <main className="flex flex-row w-full justify-between">
       <section
         id="sectionOne"
-        className="w-1/2 h-[100vh] flex justify-center items-center bg-blue-600"
+        className="w-1/2 h-[100vh] flex justify-center items-center bg-[#0066F7]"
       >
         
       </section>
