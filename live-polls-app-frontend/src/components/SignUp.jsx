@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { SnackbarProvider, enqueueSnackbar } from 'notistack';
+import { enqueueSnackbar } from 'notistack';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");

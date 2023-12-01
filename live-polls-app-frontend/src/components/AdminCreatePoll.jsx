@@ -1,13 +1,30 @@
-import React from 'react'
+import { useState } from 'react'
 
-const AdminCreatePoll = () => {
+const AdminCreatePoll = ({handleAddPoll}) => {
+  const generateRandomString = () => {
+    const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    let result = '';
+
+    for (let i = 0; i < 4; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+
+    return result;
+  }
+
+  const [randomString, setRandomString] = useState(generateRandomString());
+  const [question, setQuestion] = useState("");
+  
+
+  
   return (
     <div className="bg-[#F7F7F7] h-[85vh] w-full">
         <div className='flex items-center flex-col px-48 w-full'>
             <div className='w-[56%] mt-8'>
                 <div className='flex flex-col'>
                     <span className='text-center text-xl font-medium'>generated code</span>
-                    <span className='text-center text-xl font-medium'>1234</span>
+                    <span className='text-center text-xl font-medium'>{randomString}</span>
                 </div>
                 <div>
                 <div className="flex w-full flex-col items-center justify-center mt-6">
@@ -15,9 +32,10 @@ const AdminCreatePoll = () => {
                   type="text"
                   className="w-full border-2 rounded-md border-gray-400 bg-transparent py-2 px-4 outline-none"
                   placeholder="Enter The Poll"
+                  onInput={(e) => setQuestion(e.target.value)}
                 />
-                <button className="bg-[#0066F7] py-1 px-8 mt-8 text-white rounded">
-                Post
+                <button className="bg-[#0066F7] py-1 px-8 mt-8 text-white rounded" onClick={() => handleAddPoll(question, randomString)}>
+                Next
               </button>
               </div>
                 </div>
