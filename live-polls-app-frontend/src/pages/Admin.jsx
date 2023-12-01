@@ -10,12 +10,15 @@ import AdminPollDetails from "../components/AdminPollDetails"
 import { useState } from 'react'
 const Admin = () => {
   const [showOptions, setShowOptions] = useState(false);
-  const [showCreatePoll, setShowCreatePoll] = useState(true);
+  const [showCreatePoll, setShowCreatePoll] = useState(false);
   const [question, setQuestion] = useState("");
   const [pollCode, setPollCode] = useState("");
   const [pollDetails, setPollDetails] = useState({});
   const [showPolls, setShowPolls] = useState(true);
   const [showPollDetails, setShowPollDetails] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
+  const [showQuizResult, setShowQuizResult] = useState(false);
+  const [activeNavLink, setActiveNavLink] = useState("home");
   const handleAddPoll = (question, pollCode) => {
     setShowOptions(true);
     setShowCreatePoll(false);
@@ -28,16 +31,60 @@ const Admin = () => {
     setShowPolls(false);
     setShowPollDetails(true);
   }
+
+  const handleNavigation = (activeLink) => {
+    if(activeLink === "home") {
+      setShowPolls(true);
+      setShowPollDetails(false);
+      setShowCreatePoll(false);
+      setShowOptions(false);
+      setShowQuestion(false);
+      setShowQuizResult(false);
+      setActiveNavLink("home");
+
+    }
+
+    else if(activeLink == "create-polls") {
+      setShowPolls(false);
+      setShowPollDetails(false);
+      setShowCreatePoll(true);
+      setShowOptions(false);
+      setShowQuestion(false);
+      setShowQuizResult(false);
+      setActiveNavLink("create-polls");
+    }
+
+    else if(activeLink == "create-quiz") {
+      setShowPolls(false);
+      setShowPollDetails(false);
+      setShowCreatePoll(false);
+      setShowOptions(false);
+      setShowQuestion(true);
+      setShowQuizResult(false);
+      setActiveNavLink("create-quiz");
+    }
+    
+    else if(activeLink == "quiz-results") {
+      setShowPolls(false);
+      setShowPollDetails(false);
+      setShowCreatePoll(false);
+      setShowOptions(false);
+      setShowQuestion(false);
+      setShowQuizResult(true);
+      setActiveNavLink("quiz-results");
+    }
+  }
   return (
     <div>
-      <AdminNavbar />
+      <AdminNavbar activeNavLink={activeNavLink} handleNavigation={handleNavigation} />
       { showPolls && <AdminPolls handlePollDetails={handlePollDetails} />}
       {showPollDetails && <AdminPollDetails poll={pollDetails} />}
-      {/* {showCreatePoll && <AdminCreatePoll handleAddPoll={handleAddPoll} />} */}
-      {/* {showOptions && <AdminPollOne question={question} pollCode={pollCode} />} */}
+      {showCreatePoll && <AdminCreatePoll handleAddPoll={handleAddPoll} />}
+      {showOptions && <AdminPollOne question={question} pollCode={pollCode} />}
+      {showQuestion && <AdminQuestionOne />}
       {/* <AdminQuestionTwo /> */}
       {/* <AdminQuestionThree /> */}
-      {/* <AdminQuizResult /> */}
+      { showQuizResult && <AdminQuizResult />}
     </div>
   )
 }

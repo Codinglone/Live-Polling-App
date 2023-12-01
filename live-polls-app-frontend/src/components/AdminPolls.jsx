@@ -6,6 +6,27 @@ const AdminPolls = ({handlePollDetails}) => {
 
   const baseUrl = "http://localhost:8080";
 
+  const handleEndPoll = async (poll) => {
+    try {
+      // Make a DELETE request to delete the poll
+      await axios.delete(`${baseUrl}/polls/delete/${poll.id}`);
+
+      enqueueSnackbar('Poll ended successfully', {
+        variant: 'success',
+      });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      console.error('Error ending poll:', error);
+      enqueueSnackbar('Error ending poll', {
+        variant: 'error',
+      });
+      // Handle errors, show a message, etc.
+    }
+  };
+
   useEffect(() => {
     axios
       .get(`${baseUrl}/polls`)
@@ -39,13 +60,16 @@ const AdminPolls = ({handlePollDetails}) => {
             </p>
             <div className="flex justify-between my-2">
               <span className="text-xl font-bold">{poll.totalVotes}</span>
-              <button className="bg-[#0066F7] py-2 px-4 text-white rounded">
+              <button
+              onClick={() => handleEndPoll(poll)}
+               className="bg-[#0066F7] py-2 px-4 text-white rounded"
+               >
                 End Poll
               </button>
             </div>
                
               </div>
-            ))}
+            )) }
           
         </div>
         <div className="w-1/3 mx-4 my-8">
