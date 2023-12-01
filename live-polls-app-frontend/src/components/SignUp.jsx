@@ -1,7 +1,50 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { SnackbarProvider, enqueueSnackbar } from 'notistack';
 
 const SignUp = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [response, setResponse] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const baseUrl = "http://localhost:8080"
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.post(`${baseUrl}/user/add`, {
+      firstname: firstName,
+      lastname: lastName,
+      email: emailAddress,
+      password,
+    })
+    .then(function (response) {
+      setFirstName("");
+      setLastName("");
+      setEmailAddress("");
+      setPassword("");
+      console.log(response);
+      setResponse(response.data);
+      enqueueSnackbar(response.data, { 
+        variant: 'success'});
+        navigate("/");
+
+    })
+    .catch(function (err) {
+      console.error(err);
+      setError(err?.response?.data);
+      enqueueSnackbar(err.message, { 
+        variant: 'error'})
+    });
+  }
+
   return (
     <>
     <main className="flex flex-row w-full justify-between">
@@ -16,7 +59,7 @@ const SignUp = () => {
         className="w-1/2 h-[100vh] flex justify-center items-center bg-white"
       >
         <div className="w-full px-8">
-          <form className="flex flex-col w-full">
+          <form className="flex flex-col w-full" onSubmit={(e) => handleSubmit(e)}>
             <div className="flex justify-center w-full">
             <div className="flex flex-col">
                   <FaRegUserCircle className="text-6xl" />
@@ -29,26 +72,26 @@ const SignUp = () => {
               <input
                 type="text"
                 className="w-[45%] border-2 rounded-md border-gray-400 py-2 px-4 outline-none"
-                placeholder="Firstname *"
+                placeholder="Firstname *" value={firstName} onInput={(e) => setFirstName(e.target.value)} required
               />
               <input
                 type="text"
                 className="w-[45%] border-2 rounded-md border-gray-400 py-2 px-4 outline-none"
-                placeholder="Lastname *"
+                placeholder="Lastname *" value={lastName} onInput={(e) => setLastName(e.target.value)} required
               />
             </div>
             <div className="flex w-full justify-center mt-4 mb-6">
               <input
                 type="email"
                 className="w-full border-2 rounded-md border-gray-400 py-2 px-4 outline-none"
-                placeholder="Email *"
+                placeholder="Email *" value={emailAddress} onInput={(e) => setEmailAddress(e.target.value)} required
               />
             </div>
             <div className="flex w-full justify-center mt-4">
               <input
                 type="password"
                 className="w-full border-2 rounded-md border-gray-400 py-2 px-4 outline-none"
-                placeholder="Password *"
+                placeholder="Password *" value={password} onInput={(e) => setPassword(e.target.value)} required
               />
             </div>
             <div className="flex w-full justify-center mt-12 mb-6">

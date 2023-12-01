@@ -10,11 +10,11 @@ const Admin = () => {
     <div>
       <AdminNavbar />
       {/* <AdminPolls /> */}
-      {/* <AdminCreatePoll /> */}
+      <AdminCreatePoll />
       {/* <AdminQuestionOne /> */}
       {/* <AdminQuestionTwo /> */}
       {/* <AdminQuestionThree /> */}
-      <AdminQuizResult />
+      {/* <AdminQuizResult /> */}
     </div>
   )
 }
