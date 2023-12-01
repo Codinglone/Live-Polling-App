@@ -15,19 +15,19 @@ const AdminPollOne = ({question, pollCode}) => {
   const navigate = useNavigate();
   const handleSavePoll = () => {
     axios.post(`${baseUrl}/polls/add`, {
-        question,
-        totalVotes: 0,
-        pollCode,
-        options: JSON.stringify([
-            {optionOne: 0},
-            {optionTwo: 0},
-            {optionThree: 0},
-            {optionFour: 0}
-        ]),
-        votes: JSON.stringify([
-            {"user1": "0"}
-        ])
-      })
+      question,
+      totalVotes: 0,
+      pollCode,
+      options: JSON.stringify([
+        { name: optionOne, count: 0 },
+        { name: optionTwo, count: 0 },
+        { name: optionThree, count: 0 },
+        { name: optionFour, count: 0 }
+      ]),
+      votes: JSON.stringify([
+        { "user1": "0" }
+      ])
+    })
       .then(function (response) {
         console.log(response);
         setResponse(response.data);

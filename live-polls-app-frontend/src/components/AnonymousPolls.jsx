@@ -3,7 +3,7 @@ import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
-const AnonymousPolls = () => {
+const AnonymousPolls = ({handlePolling}) => {
   const [polls, setPolls] = useState([]);
 
   const baseUrl = "http://localhost:8080";
@@ -33,6 +33,7 @@ const AnonymousPolls = () => {
             polls.map((poll) => (
               <div
                 key={poll.pollCode}
+                onClick={() => handlePolling(poll)}
                 className="w-full bg-white shadow rounded py-4 px-4 mt-6 flex flex-col"
               >
                 <p className="text-[#696F79] text-lg">
