@@ -11,10 +11,11 @@ const AdminNavbar = () => {
         </div>
         <div className="w-full bg-white shadow-lg py-2 flex justify-between">
             <div className="w-[60%] flex justify-end">
-                <div className="w-1/3 flex items-center justify-between">
+                <div className="w-[50%] flex items-center justify-between">
                     <span className="text-md font-medium">Home</span>
                     <span className="text-md font-medium">Create Polls</span>
                     <span className="text-md font-medium">Create Quiz</span>
+                    <span className="text-md font-medium">Quiz Results</span>
                 </div>
             </div>
             <div className=" w-1/3 flex items-center justify-end px-4">
