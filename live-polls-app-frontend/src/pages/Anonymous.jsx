@@ -1,9 +1,10 @@
-import React from 'react'
+import { useState } from 'react'
 import AnonymousOne from '../components/AnonymousOne'
 import AnonymousTwo from '../components/AnonymousTwo'
 import AnonymousThree from '../components/AnonymousThree'
 import AnonymousNavbar from '../components/AnonymousNavbar'
 import AnonymousPolls from '../components/AnonymousPolls'
+import AnonymousPollAnswer from '../components/AnonymousPollAnswer'
 const Anonymous = () => {
   return (
     <div>
@@ -11,7 +12,8 @@ const Anonymous = () => {
         {/* <AnonymousOne /> */}
         {/* <AnonymousTwo /> */}
         {/* <AnonymousThree /> */}
-        <AnonymousPolls />
+        {/* <AnonymousPolls /> */}
+        <AnonymousPollAnswer />
     </div>
   )
 }

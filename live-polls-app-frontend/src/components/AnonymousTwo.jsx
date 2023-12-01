@@ -4,7 +4,6 @@ import AnonymousAnswer from './AnonymousAnswer'
 const AnonymousTwo = () => {
   return (
     <>
-        <AnonymousNavbar />
         <AnonymousAnswer />
     </>
   )
