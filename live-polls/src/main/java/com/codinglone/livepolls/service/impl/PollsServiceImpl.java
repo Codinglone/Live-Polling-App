@@ -48,6 +48,16 @@ public class PollsServiceImpl implements PollsService {
         return poll;
     }
 
+    @Override
+    public void deletePoll(Integer id) {
+        // Check user existence in the database or not
+        Polls poll = pollsRepository
+                .findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Invalid poll id " + id));
+        poll.setId(Long.valueOf(id));
+        pollsRepository.delete(poll);
+    }
+
 
 
 }

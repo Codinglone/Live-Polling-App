@@ -15,4 +15,5 @@ public interface PollsService {
 
     Polls getPollById(Integer id);
 
+    void deletePoll(Integer id);
 }
