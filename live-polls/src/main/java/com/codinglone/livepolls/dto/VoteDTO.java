@@ -1,4 +1,8 @@
 package com.codinglone.livepolls.dto;
 
-public class PollsDTO {
+import lombok.Data;
+
+@Data
+public class VoteDTO {
+    private String optionName;
 }
