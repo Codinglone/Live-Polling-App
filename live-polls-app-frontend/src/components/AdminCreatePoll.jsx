@@ -1,5 +1,6 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import axios from 'axios';
+import { enqueueSnackbar } from 'notistack';
 const AdminCreatePoll = ({handleAddPoll}) => {
   const generateRandomString = () => {
     const characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -15,6 +16,24 @@ const AdminCreatePoll = ({handleAddPoll}) => {
 
   const [randomString, setRandomString] = useState(generateRandomString());
   const [question, setQuestion] = useState("");
+  const [polls, setPolls] = useState([])
+
+  const baseUrl = "http://localhost:8080";
+
+  useEffect(() => {
+    axios.get(`${baseUrl}/polls`)
+  .then(function (response) {
+    // handle success
+    console.log(response);
+    setPolls(response.data);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+    enqueueSnackbar(error.message, { 
+      variant: 'error'})
+  })
+  }, [])
   
 
   
@@ -41,17 +60,14 @@ const AdminCreatePoll = ({handleAddPoll}) => {
                 </div>
             </div>
             <div className='w-full flex flex-col'>
-            <div className="w-full bg-white shadow py-8 rounded px-4 mt-6 flex flex-col">
-            <p className="text-[#696F79] text-lg text-center">
-              AI is one of greatest inventions in the world
-            </p>
-          </div>
 
-          <div className="w-full bg-white shadow py-8 rounded px-4 mt-2 flex flex-col">
+          {polls.length >= 1 && polls.map(poll => (
+            <div key={poll.pollCode} className="w-full bg-white shadow py-8 rounded px-4 mt-2 flex flex-col">
             <p className="text-[#696F79] text-lg text-center">
-              AI is one of greatest inventions in the world
+              {poll.question}
             </p>
           </div>
+          ))}
             </div>
         </div>
     </div>

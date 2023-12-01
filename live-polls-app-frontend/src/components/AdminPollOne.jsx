@@ -40,7 +40,6 @@ const AdminPollOne = ({question, pollCode}) => {
       })
       .catch(function (err) {
         console.error(err);
-        setError(err?.response?.data);
         enqueueSnackbar(err.message, { 
           variant: 'error'})
       });
