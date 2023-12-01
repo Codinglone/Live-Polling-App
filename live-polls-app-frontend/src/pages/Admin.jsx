@@ -3,6 +3,7 @@ import AdminPolls from "../components/AdminPolls"
 import AdminCreatePoll from "../components/AdminCreatePoll"
 import AdminQuestionOne from "../components/AdminQuestionOne"
 import AdminQuestionTwo from "../components/AdminQuestionTwo"
+import AdminQuestionThree from "../components/AdminQuestionThree"
 const Admin = () => {
   return (
     <div>
@@ -10,7 +11,8 @@ const Admin = () => {
       {/* <AdminPolls /> */}
       {/* <AdminCreatePoll /> */}
       {/* <AdminQuestionOne /> */}
-      <AdminQuestionTwo />
+      {/* <AdminQuestionTwo /> */}
+      <AdminQuestionThree />
     </div>
   )
 }
