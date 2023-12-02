@@ -26,22 +26,34 @@ const AnonymousAnswer = () => {
     const selectedAnswerObject = currentAnswers.find(
       (answer) => answer.text === selectedAnswer
     );
-
+  
     if (selectedAnswerObject) {
       const isCorrect = selectedAnswerObject.isCorrect;
-
+  
       if (isCorrect) {
         setScore(score + 1);
       }
-
-      if (currentQuestion < questions.length - 1) {
-        setCurrentQuestion(currentQuestion + 1);
-        setSelectedAnswer("");
-      } else {
-        setShowScore(true);
-      }
+  
+      // Send user answer to the backend
+      axios
+        .post(`http://localhost:8080/questions/answer/${questions[currentQuestion]?.id}`, {
+          username: "codinglone", // Replace with the actual username or user identifier
+          choice: selectedAnswer,
+        })
+        .then(() => {
+          if (currentQuestion < questions.length - 1) {
+            setCurrentQuestion(currentQuestion + 1);
+            setSelectedAnswer("");
+          } else {
+            setShowScore(true);
+          }
+        })
+        .catch((error) => {
+          console.error("Error updating user answer:", error);
+        });
     }
   };
+  
 
   return (
     <div className="bg-[#F7F7F7] h-[85vh] w-full">
