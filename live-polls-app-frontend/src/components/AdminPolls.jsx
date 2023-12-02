@@ -53,13 +53,11 @@ const AdminPolls = ({ handlePollDetails }) => {
 
     setPopularWords(sortedWords.slice(0, 5)); // Display the top 5 popular words
   };
-
   useEffect(() => {
     axios
       .get(`${baseUrl}/polls`)
       .then(function (response) {
         setPolls(response.data);
-        calculatePopularWords();
       })
       .catch(function (error) {
         console.log(error);
@@ -68,6 +66,10 @@ const AdminPolls = ({ handlePollDetails }) => {
         });
       });
   }, []);
+
+  useEffect(() => {
+    calculatePopularWords();
+  }, [polls])
 
   return (
     <div className="bg-[#F7F7F7] h-[85vh] w-full">
