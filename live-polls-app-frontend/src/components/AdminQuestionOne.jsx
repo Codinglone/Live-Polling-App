@@ -1,7 +1,14 @@
 import { useState } from "react";
 
-const AdminQuestionOne = () => {
-  const [questionsCount, setQuestionsCount] = useState(2);
+const AdminQuestionOne = ({handleNavigation, handleAddQuestion}) => {
+  // const [questionsCount, setQuestionsCount] = useState(2);
+  const [question, setQuestion] = useState("");
+
+  const handleQuestion = () => {
+    handleNavigation("add-choices");
+    handleAddQuestion(question);
+  }
+
   return (
     <div className="bg-[#F7F7F7] h-[85vh] w-full">
       <div className="flex items-center flex-col px-48 w-full">
@@ -10,10 +17,11 @@ const AdminQuestionOne = () => {
             <div className="flex w-full flex-col items-center justify-center mt-6">
               <input
                 type="text"
+                onInput={(e) => setQuestion(e.target.value)}
                 className="w-full border-2 rounded-md border-gray-400 bg-transparent py-2 px-4 outline-none"
                 placeholder="Enter The Question"
               />
-              <div className="mt-12 flex flex-col">
+              {/* <div className="mt-12 flex flex-col">
                 <span className="mb-4">Select the multiple choices</span>
                 <div className="bg-white flex justify-between px-2 border-2 border-gray-300 rounded">
                   <span
@@ -32,8 +40,8 @@ const AdminQuestionOne = () => {
                     +
                   </span>
                 </div>
-              </div>
-              <button className="bg-[#0066F7] py-1 px-8 mt-8 text-white rounded">
+              </div> */}
+              <button onClick={handleQuestion} className="bg-[#0066F7] py-1 px-8 mt-8 text-white rounded">
                 Next
               </button>
             </div>

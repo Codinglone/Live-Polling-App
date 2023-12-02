@@ -18,7 +18,13 @@ const Admin = () => {
   const [showPollDetails, setShowPollDetails] = useState(false);
   const [showQuestion, setShowQuestion] = useState(false);
   const [showQuizResult, setShowQuizResult] = useState(false);
+  const [showAddChoices, setShowAddChoices] = useState(false);
   const [activeNavLink, setActiveNavLink] = useState("home");
+
+  const handleAddQuestion = (question) => {
+    setQuestion(question);
+  }
+
   const handleAddPoll = (question, pollCode) => {
     setShowOptions(true);
     setShowCreatePoll(false);
@@ -73,6 +79,17 @@ const Admin = () => {
       setShowQuizResult(true);
       setActiveNavLink("quiz-results");
     }
+    else if(activeLink == "add-choices") {
+      setShowPolls(false);
+      setShowPollDetails(false);
+      setShowCreatePoll(false);
+      setShowOptions(false);
+      setShowQuestion(false);
+      setShowQuizResult(false);
+      setShowAddChoices(true);
+      setActiveNavLink("create-quiz");
+    
+    }
   }
   return (
     <div>
@@ -81,8 +98,8 @@ const Admin = () => {
       {showPollDetails && <AdminPollDetails poll={pollDetails} />}
       {showCreatePoll && <AdminCreatePoll  handleAddPoll={handleAddPoll} />}
       {showOptions && <AdminPollOne handleNavigation={handleNavigation} question={question} pollCode={pollCode} />}
-      {showQuestion && <AdminQuestionOne />}
-      {/* <AdminQuestionTwo /> */}
+      {showQuestion && <AdminQuestionOne handleAddQuestion={handleAddQuestion}  handleNavigation={handleNavigation} />}
+      {showAddChoices && <AdminQuestionTwo  question={question} />}
       {/* <AdminQuestionThree /> */}
       { showQuizResult && <AdminQuizResult />}
     </div>
