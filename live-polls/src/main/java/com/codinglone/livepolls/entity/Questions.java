@@ -17,7 +17,7 @@ public class Questions {
     @Column(columnDefinition = "json", nullable = false)
     private String answers;
 
-    @Column(columnDefinition = "json", nullable = false)
+    @Column(columnDefinition = "json")
     private String userVotes;
 
     // Constructors, getters, and setters...
