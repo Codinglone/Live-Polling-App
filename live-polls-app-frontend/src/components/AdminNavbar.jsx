@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const AdminNavbar = ({ handleNavigation, activeNavLink }) => {
-  const location = useLocation();
-
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    // localStorage.removeItem("token");
+    navigate("/");
+  }
   return (
     <nav className="w-full flex flex-col">
       <div className="flex justify-center w-full bg-[#0066F7]">
@@ -49,9 +54,21 @@ const AdminNavbar = ({ handleNavigation, activeNavLink }) => {
             </span>
           </div>
         </div>
-        <div className="w-1/3 flex items-center justify-end px-4">
-          <FaRegUserCircle className="text-4xl" />
+        <div className="w-1/3 flex items-center justify-end px-4 relative">
+      <FaRegUserCircle
+        className="text-4xl cursor-pointer"
+        onClick={() => setPopupOpen(!isPopupOpen)}
+      />
+      </div>
+      {isPopupOpen && (
+        <div className="absolute top-[100px] right-[6px] mt-2 p-4 bg-white border rounded shadow-lg">
+          {/* Replace 'username' with the actual username */}
+          <p className="text-gray-800">Username: Admin</p>
+          <button onClick={handleLogout} className="mt-2 bg-red-500 text-white px-4 py-2 rounded">
+            Logout
+          </button>
         </div>
+      )}
       </div>
     </nav>
   );

@@ -26,7 +26,7 @@ const AnonymousPolls = ({handlePolling}) => {
   }, []);
   return (
     <div className="bg-[#F7F7F7] h-[85vh] w-full">
-      <div className="px-48 flex justify-between w-full">
+      <div className="px-60 flex justify-between w-full">
         <div className="w-full flex flex-col my-8">
           
           {polls.length >= 1 &&
