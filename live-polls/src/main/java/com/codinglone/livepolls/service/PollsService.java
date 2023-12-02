@@ -5,7 +5,6 @@ import com.codinglone.livepolls.entity.Polls;
 import java.util.List;
 
 public interface PollsService {
-     List<Polls> getAllPolls();
 
     void addPoll(Polls poll);
 

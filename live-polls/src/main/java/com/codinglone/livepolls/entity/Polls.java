@@ -22,7 +22,4 @@ public class Polls {
     @Column(columnDefinition = "json", nullable = false)
     private String options;
 
-    @Column(columnDefinition = "json", nullable = false)
-    private String votes;
-
 }

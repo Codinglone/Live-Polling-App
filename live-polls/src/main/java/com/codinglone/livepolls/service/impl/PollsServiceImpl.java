@@ -16,11 +16,6 @@ public class PollsServiceImpl implements PollsService {
     private PollsRepository pollsRepository;
 
     @Override
-    public List<Polls> getAllPolls() {
-        return null;
-    }
-
-    @Override
     public void addPoll(Polls poll) {
         pollsRepository.save(poll);
     }
