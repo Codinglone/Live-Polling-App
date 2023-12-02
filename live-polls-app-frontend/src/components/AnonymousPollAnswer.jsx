@@ -4,20 +4,13 @@ import { enqueueSnackbar } from "notistack";
 import { useNavigate } from 'react-router-dom';
 const AnonymousPollAnswer = ({ poll }) => {
   const [votedOption, setVotedOption] = useState(null);
-  const navigate = useNavigate();
 
   const handleVote = async (optionName) => {
     try {
-      // Make a POST request to update the vote count for the chosen option
       const response = await axios.put(`http://localhost:8080/polls/vote/${poll.id}`, {
         optionName,
       });
 
-      // Update the UI with the new poll data (assuming the response includes the updated poll object)
-      // For simplicity, you can reload the entire poll data, but in a real application, you might update only the relevant parts.
-      // Example: setPoll(response.data);
-
-      // Optionally, update the local state to reflect the voted option
       setVotedOption(optionName);
       enqueueSnackbar(`You have voted ${optionName}`, {
         variant: "success",
@@ -31,14 +24,10 @@ const AnonymousPollAnswer = ({ poll }) => {
       enqueueSnackbar(error.message, {
         variant: "error",
       })
-      // Handle errors, show a message, etc.
     }
   };
 
-  // Parse the options JSON string into a JavaScript object
   const parsedOptions = JSON.parse(poll.options);
-
-  // Extract the keys (option names) from the object
 
   return (
     <div className="bg-[#F7F7F7] h-[85vh] w-full">

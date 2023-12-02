@@ -12,12 +12,10 @@ const AnonymousPolls = ({handlePolling}) => {
     axios
       .get(`${baseUrl}/polls`)
       .then(function (response) {
-        // handle success
         console.log(response);
         setPolls(response.data);
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
         enqueueSnackbar(error.message, {
           variant: "error",
@@ -45,10 +43,6 @@ const AnonymousPolls = ({handlePolling}) => {
             </div>
               </div>
             ))}
-       
-         
-
-          
           
         </div>
       </div>

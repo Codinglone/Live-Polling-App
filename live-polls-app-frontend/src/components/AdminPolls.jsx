@@ -10,7 +10,6 @@ const AdminPolls = ({ handlePollDetails }) => {
 
   const handleEndPoll = async (poll) => {
     try {
-      // Make a DELETE request to delete the poll
       await axios.delete(`${baseUrl}/polls/delete/${poll.id}`);
 
       enqueueSnackbar("Poll ended successfully", {
@@ -25,7 +24,6 @@ const AdminPolls = ({ handlePollDetails }) => {
       enqueueSnackbar("Error ending poll", {
         variant: "error",
       });
-      // Handle errors, show a message, etc.
     }
   };
 
@@ -51,7 +49,7 @@ const AdminPolls = ({ handlePollDetails }) => {
       .sort((a, b) => b[1] - a[1])
       .map(([word]) => word);
 
-    setPopularWords(sortedWords.slice(0, 5)); // Display the top 5 popular words
+    setPopularWords(sortedWords.slice(0, 5)); 
   };
   useEffect(() => {
     axios

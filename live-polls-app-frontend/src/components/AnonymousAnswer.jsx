@@ -34,10 +34,10 @@ const AnonymousAnswer = () => {
         setScore(score + 1);
       }
   
-      // Send user answer to the backend
+
       axios
         .post(`http://localhost:8080/questions/answer/${questions[currentQuestion]?.id}`, {
-          username: "codinglone", // Replace with the actual username or user identifier
+          username: "codinglone", 
           choice: selectedAnswer,
         })
         .then(() => {

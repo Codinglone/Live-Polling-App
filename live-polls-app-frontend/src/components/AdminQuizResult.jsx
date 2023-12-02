@@ -6,18 +6,16 @@ const AdminQuizResult = () => {
   const [userScores, setUserScores] = useState([]);
 
   useEffect(() => {
-    // Fetch quiz results from the endpoint
     axios
       .get("http://localhost:8080/questions")
       .then((response) => {
-        // Assuming the response.data is an array of quiz questions
         setQuestions(response.data);
         calculateUserScores(response.data);
       })
       .catch((error) => {
         console.error("Error fetching quiz questions:", error);
       });
-  }, []); // Empty dependency array ensures the effect runs once after the initial render
+  }, []); 
 
   const calculateUserScores = (quizQuestions) => {
     const scoresMap = new Map();
@@ -33,19 +31,17 @@ const AdminQuizResult = () => {
             (answer) => answer.text === choice
           )?.isCorrect || false;
 
-        // If the user doesn't have an entry in scoresMap, initialize it
         if (!scoresMap.has(username)) {
           scoresMap.set(username, 0);
         }
 
-        // Increment the user's score if the choice is correct
         if (isCorrect) {
           scoresMap.set(username, scoresMap.get(username) + 1);
         }
       });
     });
 
-    // Convert the map to an array of objects and sort it by score in descending order
+   
     const sortedUserScores = Array.from(scoresMap.entries())
       .map(([username, score]) => ({ username, score }))
       .sort((a, b) => b.score - a.score);

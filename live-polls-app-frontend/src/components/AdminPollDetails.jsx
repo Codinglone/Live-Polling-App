@@ -7,25 +7,20 @@ const AdminPollDetails = ({ poll }) => {
   const [optionPercentages, setOptionPercentages] = useState([]);
 
   const calculatePercentages = () => {
-    // Parse the options JSON string into a JavaScript object
     const parsedOptions = JSON.parse(poll.options);
 
-    // Calculate the total votes
     const totalVotes = parsedOptions.reduce((total, option) => total + option.count, 0);
 
-    // Calculate the percentage for each option
     const percentages = parsedOptions.map((option) => ({
       name: option.name,
       percentage: totalVotes !== 0 ? ((option.count / totalVotes) * 100).toFixed(2) : 0,
     }));
 
-    // Set the option percentages in the state
     setOptionPercentages(percentages);
   };
 
   const handleEndPoll = async () => {
     try {
-      // Make a DELETE request to delete the poll
       await axios.delete(`http://localhost:8080/polls/delete/${poll.id}`);
 
       enqueueSnackbar('Poll ended successfully', {
@@ -40,12 +35,10 @@ const AdminPollDetails = ({ poll }) => {
       enqueueSnackbar('Error ending poll', {
         variant: 'error',
       });
-      // Handle errors, show a message, etc.
     }
   };
 
   useEffect(() => {
-    // Calculate percentages when the component mounts
     calculatePercentages();
   }, [poll]);
 

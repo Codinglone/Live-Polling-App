@@ -39,13 +39,11 @@ const AdminQuestionTwo = ({ question }) => {
 
   const handlePostQuestion = async () => {
     try {
-      // Map choices to the required structure
       const answers = choices.map(({ text, isCorrect }) => ({
         text,
         isCorrect,
       }));
   
-      // Assuming you have userVotes data available
       const userVotes = [
         { username: 'user1', choice: 'Cheetah' },
         { username: 'user2', choice: 'Panther' },
@@ -67,7 +65,6 @@ const AdminQuestionTwo = ({ question }) => {
       }, 2000)
     } catch (error) {
       console.error('Error posting question:', error);
-      // Handle error, e.g., show an error message to the user
     }
   };
 
