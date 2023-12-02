@@ -34,7 +34,7 @@ const AnonymousPolls = ({handlePolling}) => {
               <div
                 key={poll.pollCode}
                 onClick={() => handlePolling(poll)}
-                className="w-full bg-white shadow rounded py-4 px-4 mt-6 flex flex-col"
+                className="w-full bg-white shadow rounded cursor-pointer py-4 px-4 mt-6 flex flex-col"
               >
                 <p className="text-[#696F79] text-lg">
                   {poll.question}

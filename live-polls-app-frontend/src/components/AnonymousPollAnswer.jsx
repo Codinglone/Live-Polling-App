@@ -39,7 +39,6 @@ const AnonymousPollAnswer = ({ poll }) => {
   const parsedOptions = JSON.parse(poll.options);
 
   // Extract the keys (option names) from the object
-  const optionNames = parsedOptions.map((option) => option.name);
 
   return (
     <div className="bg-[#F7F7F7] h-[85vh] w-full">

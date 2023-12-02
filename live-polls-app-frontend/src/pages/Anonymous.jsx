@@ -15,7 +15,8 @@ const Anonymous = () => {
     setShowPollOptions(true);
     setShowPolls(false);
     setPollData(poll);
-    console.log(poll)
+    console.log(poll);
+    setShowQuiz(false);
   }
 
   const handleNavigation = (activeLink) => {
@@ -23,10 +24,12 @@ const Anonymous = () => {
       setShowPolls(true);
       setShowQuiz(false);
       setActiveNavLink('polls');
+      setShowPollOptions(false);
     } else if(activeLink === 'quiz'){
       setShowQuiz(true);
       setShowPolls(false);
       setActiveNavLink('quiz');
+      setShowPollOptions(false);
     }
   }
 
