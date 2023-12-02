@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import AnonymousOne from '../components/AnonymousOne'
-import AnonymousTwo from '../components/AnonymousTwo'
 import AnonymousThree from '../components/AnonymousThree'
 import AnonymousNavbar from '../components/AnonymousNavbar'
 import AnonymousPolls from '../components/AnonymousPolls'
 import AnonymousPollAnswer from '../components/AnonymousPollAnswer'
+import AnonymousAnswer from '../components/AnonymousAnswer'
 const Anonymous = () => {
   const [showPollOptions, setShowPollOptions] = useState(false);
   const [showPolls, setShowPolls] = useState(true)
@@ -35,7 +35,7 @@ const Anonymous = () => {
     <div>
       <AnonymousNavbar activeNavLink={activeNavLink} handleNavigation={handleNavigation} />
         {/* <AnonymousOne /> */}
-        {showQuiz && <AnonymousTwo />}
+        {showQuiz && <AnonymousAnswer />}
         {/* <AnonymousThree /> */}
         { showPolls && <AnonymousPolls handlePolling={handlePolling} />}
         {showPollOptions && <AnonymousPollAnswer poll={pollData} /> }
