@@ -3,7 +3,7 @@ import axios from "axios";
 import { enqueueSnackbar } from 'notistack';
 import { useNavigate } from "react-router-dom";
 
-const AdminPollOne = ({question, pollCode}) => {
+const AdminPollOne = ({question, pollCode, handleNavigation}) => {
   const [optionOne, setOptionOne] = useState("");
   const [optionTwo, setOptionTwo] = useState("");
   const [optionThree, setOptionThree] = useState("");
@@ -23,9 +23,6 @@ const AdminPollOne = ({question, pollCode}) => {
         { name: optionTwo, count: 0 },
         { name: optionThree, count: 0 },
         { name: optionFour, count: 0 }
-      ]),
-      votes: JSON.stringify([
-        { "user1": "0" }
       ])
     })
       .then(function (response) {
@@ -34,7 +31,9 @@ const AdminPollOne = ({question, pollCode}) => {
         enqueueSnackbar(response.data, { 
           variant: 'success'});
           setTimeout(() => {
-            navigate("/admin");
+            handleNavigation(
+              'home'
+            )
           }, 2000)
   
       })

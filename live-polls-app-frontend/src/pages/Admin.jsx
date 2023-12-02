@@ -79,8 +79,8 @@ const Admin = () => {
       <AdminNavbar activeNavLink={activeNavLink} handleNavigation={handleNavigation} />
       { showPolls && <AdminPolls handlePollDetails={handlePollDetails} />}
       {showPollDetails && <AdminPollDetails poll={pollDetails} />}
-      {showCreatePoll && <AdminCreatePoll handleAddPoll={handleAddPoll} />}
-      {showOptions && <AdminPollOne question={question} pollCode={pollCode} />}
+      {showCreatePoll && <AdminCreatePoll  handleAddPoll={handleAddPoll} />}
+      {showOptions && <AdminPollOne handleNavigation={handleNavigation} question={question} pollCode={pollCode} />}
       {showQuestion && <AdminQuestionOne />}
       {/* <AdminQuestionTwo /> */}
       {/* <AdminQuestionThree /> */}
