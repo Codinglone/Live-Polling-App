@@ -3,7 +3,7 @@ import AdminPolls from "../components/AdminPolls"
 import AdminCreatePoll from "../components/AdminCreatePoll"
 import AdminQuestionOne from "../components/AdminQuestionOne"
 import AdminQuestionTwo from "../components/AdminQuestionTwo"
-import AdminQuestionThree from "../components/AdminQuestionThree"
+// import AdminQuestionThree from "../components/AdminQuestionThree"
 import AdminQuizResult from "../components/AdminQuizResult"
 import AdminPollOne from "../components/AdminPollOne"
 import AdminPollDetails from "../components/AdminPollDetails"
@@ -104,7 +104,6 @@ const Admin = () => {
       {showOptions && <AdminPollOne handleNavigation={handleNavigation} question={question} pollCode={pollCode} />}
       {showQuestion && <AdminQuestionOne handleAddQuestion={handleAddQuestion}  handleNavigation={handleNavigation} />}
       {showAddChoices && <AdminQuestionTwo  question={question} />}
-      {/* <AdminQuestionThree /> */}
       { showQuizResult && <AdminQuizResult />}
     </div>
   )
