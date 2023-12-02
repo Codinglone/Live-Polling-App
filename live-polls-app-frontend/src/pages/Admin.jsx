@@ -46,6 +46,7 @@ const Admin = () => {
       setShowOptions(false);
       setShowQuestion(false);
       setShowQuizResult(false);
+      setShowAddChoices(false);
       setActiveNavLink("home");
 
     }
@@ -57,6 +58,7 @@ const Admin = () => {
       setShowOptions(false);
       setShowQuestion(false);
       setShowQuizResult(false);
+      setShowAddChoices(false);
       setActiveNavLink("create-polls");
     }
 
@@ -68,6 +70,7 @@ const Admin = () => {
       setShowQuestion(true);
       setShowQuizResult(false);
       setActiveNavLink("create-quiz");
+      setShowAddChoices(false);
     }
     
     else if(activeLink == "quiz-results") {
@@ -78,6 +81,7 @@ const Admin = () => {
       setShowQuestion(false);
       setShowQuizResult(true);
       setActiveNavLink("quiz-results");
+      setShowAddChoices(false);
     }
     else if(activeLink == "add-choices") {
       setShowPolls(false);
