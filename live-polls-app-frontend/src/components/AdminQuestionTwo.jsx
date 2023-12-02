@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import { enqueueSnackbar } from "notistack";
 const AdminQuestionTwo = ({ question }) => {
   const [choices, setChoices] = useState([{ text: '', isCorrect: false }]);
 
@@ -58,8 +58,13 @@ const AdminQuestionTwo = ({ question }) => {
         userVotes: JSON.stringify(userVotes),
       });
   
-      console.log('Question posted successfully:', response.data);
-      // Handle success, e.g., show a success message to the user
+      console.log(response.data);
+      enqueueSnackbar(`Question posted successfully:`, {
+        variant: "success",
+      })
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000)
     } catch (error) {
       console.error('Error posting question:', error);
       // Handle error, e.g., show an error message to the user
