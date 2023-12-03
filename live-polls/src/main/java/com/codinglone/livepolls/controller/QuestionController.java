@@ -31,8 +31,6 @@ public class QuestionController {
         return ResponseEntity.ok("Question added successfully");
     }
 
-
-
     @GetMapping("/{id}")
     public ResponseEntity<Questions> getQuestion(@PathVariable Long id) {
         Questions question = questionService.getQuestionById(id);
