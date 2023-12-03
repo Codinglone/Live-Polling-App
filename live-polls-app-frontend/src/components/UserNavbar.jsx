@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-const user = JSON.parse(localStorage.getItem("user")) || "Fabrice";
+const user = localStorage.getItem("user") || "Fabrice";
 const UserNavbar = ({ handleNavigation, activeNavLink }) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("role");
     navigate("/");
   }
   return (

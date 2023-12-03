@@ -7,6 +7,8 @@ import UserAnswer from "../components/UserAnswer";
 import UserPollOne from "../components/UserPollOne";
 import UserPollAnswer from "../components/UserPollAnswer";
 import axios from "axios";
+
+
 const User = ({ pollcode }) => {
   const [showOptions, setShowOptions] = useState(false);
   const [showPollOptions, setShowPollOptions] = useState(false);
@@ -17,8 +19,12 @@ const User = ({ pollcode }) => {
   const [question, setQuestion] = useState("");
   const [activeNavLink, setActiveNavLink] = useState("create-poll");
   const [showCreatePoll, setShowCreatePoll] = useState(true);
-
+  const [user, setUser] = useState("");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
+  if(user == "" || role != "user"){
+    navigate("/")
+  }
 
   useEffect(() => {
     const fetchPolls = async () => {
@@ -47,6 +53,10 @@ const User = ({ pollcode }) => {
   useEffect(() => {
     setShowPollOptions(false);
     setShowOptions(false);
+    setUser(localStorage.getItem("user"))
+    setRole(localStorage.getItem("role"))
+
+
   }, [])
 
   const handlePolling = (poll) => {

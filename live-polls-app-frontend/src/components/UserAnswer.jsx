@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const user = JSON.parse(localStorage.getItem("user")) || "Fabrice";
+const user = localStorage.getItem("user");
 
 const UserAnswer = () => {
   const [questions, setQuestions] = useState([]);

@@ -6,7 +6,8 @@ const AdminNavbar = ({ handleNavigation, activeNavLink }) => {
   const [isPopupOpen, setPopupOpen] = useState(false);
   const navigate = useNavigate();
   const handleLogout = () => {
-    // localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
     navigate("/");
   }
   return (

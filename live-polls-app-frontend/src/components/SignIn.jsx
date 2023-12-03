@@ -2,8 +2,13 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 const SignIn = ({handleSelectPoll}) => {
   const [pollCode, setPollCode] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const handlePollAnswer = (e) => {
@@ -12,6 +17,42 @@ const SignIn = ({handleSelectPoll}) => {
     setTimeout(() => {
       navigate("/anonymous");
     }, 1500)
+  }
+  const baseUrl = "http://localhost:8080";
+  const handleLogin = (e) => {
+    e.preventDefault()
+    axios
+      .get(`${baseUrl}/user`)
+      .then(function (response) {
+        console.log(response);
+        setUsers(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+        enqueueSnackbar(error.message, {
+          variant: "error",
+        });
+      })
+
+      if(users.length >= 1) {
+        users.map(user => {
+          if(user.email === email && user.password === password && user.role === "user") {
+            localStorage.setItem("user", email)
+            localStorage.setItem("role", "user")
+            navigate("/user");
+          }
+          else if(user.email === email && user.password === password && user.role === "admin") {
+            localStorage.setItem("user", email)
+            localStorage.setItem("role", "admin")
+            navigate("/admin");
+          }
+          else {
+            enqueueSnackbar("Invalid email or password", {
+              variant: "error",
+            });
+          }
+        })
+      }
   }
   return (
     <>
@@ -39,7 +80,7 @@ const SignIn = ({handleSelectPoll}) => {
           className="w-1/2 h-[100vh] flex justify-center items-center bg-white"
         >
           <div className="w-full px-8">
-            <form className="flex flex-col w-full">
+            <form onSubmit={(e) => handleLogin(e)} className="flex flex-col w-full">
               <div className="flex justify-center w-full">
                 <div className="flex flex-col">
                   <FaRegUserCircle className="text-6xl" />
@@ -52,22 +93,22 @@ const SignIn = ({handleSelectPoll}) => {
                 <input
                   type="text"
                   className="w-full border-2 rounded-md border-gray-400 py-2 px-4 outline-none"
+                  onInput={(e) => setEmail(e.target.value)}
                   placeholder="Email *"
+                  required
                 />
               </div>
               <div className="flex w-full justify-center my-2">
                 <input
                   type="password"
+                  onInput={(e) => setPassword(e.target.value)}
                   className="w-full border-2 rounded-md border-gray-400 py-2 px-4 outline-none"
                   placeholder="Password *"
+                  required
                 />
               </div>
-              <div className="flex w-1/4 my-2">
-                <input type="checkbox" />
-                <span className="ml-2">Remember me</span>
-              </div>
               <div className="flex w-full justify-center my-6">
-                <button className="w-full bg-[#0066F7] text-center uppercase text-white font-medium py-1 rounded">
+                <button type="submit" className="w-full bg-[#0066F7] text-center uppercase text-white font-medium py-1 rounded">
                   signin
                 </button>
               </div>

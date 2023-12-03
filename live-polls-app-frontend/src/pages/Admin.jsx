@@ -6,7 +6,8 @@ import AdminQuestionTwo from "../components/AdminQuestionTwo"
 import AdminQuizResult from "../components/AdminQuizResult"
 import AdminPollOne from "../components/AdminPollOne"
 import AdminPollDetails from "../components/AdminPollDetails"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 const Admin = () => {
   const [showOptions, setShowOptions] = useState(false);
   const [showCreatePoll, setShowCreatePoll] = useState(false);
@@ -19,7 +20,12 @@ const Admin = () => {
   const [showQuizResult, setShowQuizResult] = useState(false);
   const [showAddChoices, setShowAddChoices] = useState(false);
   const [activeNavLink, setActiveNavLink] = useState("home");
-
+  const [user, setUser] = useState("");
+  const [role, setRole] = useState("");
+  const navigate = useNavigate();
+  if(user == "" || role != "admin"){
+    navigate("/")
+  }
   const handleAddQuestion = (question) => {
     setQuestion(question);
   }
@@ -93,7 +99,13 @@ const Admin = () => {
       setActiveNavLink("create-quiz");
     
     }
+    
   }
+  useEffect(() => {
+    setUser(localStorage.getItem("user"))
+    setRole(localStorage.getItem("role"))
+    
+  }, [])
   return (
     <div>
       <AdminNavbar activeNavLink={activeNavLink} handleNavigation={handleNavigation} />
