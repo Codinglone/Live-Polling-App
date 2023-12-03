@@ -46,7 +46,7 @@ const AdminPollDetails = ({ poll }) => {
     <div className="bg-[#F7F7F7] h-[85vh] w-full">
       <div className="flex items-center flex-col py-12 px-48 w-full">
         <div>
-          <span className="text-xl font-semibold">{poll.question}</span>
+          <span className="text-xl font-semibold">{poll.question} {" " + poll.pollCode}</span>
         </div>
         <div className="w-1/2 pl-8 flex justify-between flex-wrap py-8">
           {optionPercentages.map((option, index) => (

@@ -1,6 +1,18 @@
 import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-const SignIn = () => {
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+const SignIn = ({handleSelectPoll}) => {
+  const [pollCode, setPollCode] = useState("");
+  const navigate = useNavigate();
+
+  const handlePollAnswer = (e) => {
+    e.preventDefault();
+    handleSelectPoll(pollCode);
+    setTimeout(() => {
+      navigate("/anonymous");
+    }, 1500)
+  }
   return (
     <>
       <main className="flex flex-row w-full justify-between">
@@ -9,14 +21,15 @@ const SignIn = () => {
           className="w-1/2 h-[100vh] flex justify-center items-center bg-[#0066F7]"
         >
           <div className="flex justify-center">
-            <form>
+            <form onSubmit={(e) => handlePollAnswer(e)}>
               <div className="flex w-full justify-between bg-white rounded-full pl-28 pr-2 py-[4px]">
                 <input
                   type="text"
                   className="w-[70%] text-left outline-none"
                   placeholder="Enter the code"
+                  onInput={(e) => setPollCode(e.target.value)}
                 />
-                <button className="w-[16%] bg-[#0066F7] h-10 rounded-full"></button>
+                <button type="submit" className="w-[16%] bg-[#0066F7] h-10 rounded-full"></button>
               </div>
             </form>
           </div>
@@ -50,17 +63,20 @@ const SignIn = () => {
                 />
               </div>
               <div className="flex w-1/4 my-2">
-                <input
-                  type="checkbox"
-                />
+                <input type="checkbox" />
                 <span className="ml-2">Remember me</span>
               </div>
               <div className="flex w-full justify-center my-6">
-                <button className="w-full bg-[#0066F7] text-center uppercase text-white font-medium py-1 rounded">signin</button>
+                <button className="w-full bg-[#0066F7] text-center uppercase text-white font-medium py-1 rounded">
+                  signin
+                </button>
               </div>
               <div className="flex w-full justify-end my-6">
                 <p className="text-[#0066F7] text-sm text-right">
-                    Don't have an account <Link to="/signup" className="text-[#0066F7]">Sign up</Link>
+                  Don't have an account{" "}
+                  <Link to="/signup" className="text-[#0066F7]">
+                    Sign up
+                  </Link>
                 </p>
               </div>
             </form>
