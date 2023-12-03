@@ -22,4 +22,7 @@ public class Polls {
     @Column(columnDefinition = "json", nullable = false)
     private String options;
 
+    @Column(nullable = false)
+    private String createdBy;
+
 }

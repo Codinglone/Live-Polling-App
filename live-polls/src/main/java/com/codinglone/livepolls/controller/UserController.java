@@ -1,5 +1,6 @@
 package com.codinglone.livepolls.controller;
 
+import com.codinglone.livepolls.dto.LoginDTO;
 import com.codinglone.livepolls.dto.UserDTO;
 import com.codinglone.livepolls.entity.User;
 import com.codinglone.livepolls.service.UserService;
@@ -23,6 +24,7 @@ public class UserController {
         return "successfully added user";
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping
     public List<User> getUsers(){
         return userService.getUsers();

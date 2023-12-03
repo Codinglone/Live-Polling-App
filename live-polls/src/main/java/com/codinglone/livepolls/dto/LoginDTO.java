@@ -1,2 +1,9 @@
-package com.codinglone.livepolls.dto;public class LoginDTO {
+package com.codinglone.livepolls.dto;
+
+import lombok.Data;
+
+@Data
+public class LoginDTO {
+    private String email;
+    private String password;
 }
