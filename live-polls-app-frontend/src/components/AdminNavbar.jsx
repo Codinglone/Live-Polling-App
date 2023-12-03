@@ -15,7 +15,7 @@ const AdminNavbar = ({ handleNavigation, activeNavLink }) => {
       <div className="flex justify-center w-full bg-[#0066F7]">
         <div className="w-1/4 flex justify-between py-2">
           <span className="text-white text-xl font-medium">Welcome</span>
-          <span className="text-white text-xl font-medium">Admin</span>
+          <span className="text-white text-xl font-medium">{localStorage.getItem("role")}</span>
         </div>
       </div>
       <div className="w-full bg-white shadow-lg py-2 flex justify-between">
