@@ -19,7 +19,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/anonymous" element={<Anonymous pollCode={pollCode} />} />
-        <Route path="/user" element={<User />} />
+        <Route path="/user" element={<User pollcode={pollCode} />} />
        </Routes>
     </>
   )
