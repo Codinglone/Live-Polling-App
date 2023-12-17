@@ -18,6 +18,7 @@ const UserPollOne = ({question, pollCode, handleNavigation}) => {
       question,
       totalVotes: 0,
       pollCode,
+      createdBy: localStorage.getItem("user"),
       options: JSON.stringify([
         { name: optionOne, count: 0 },
         { name: optionTwo, count: 0 },
