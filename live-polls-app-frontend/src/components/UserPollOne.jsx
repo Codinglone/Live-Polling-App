@@ -24,8 +24,7 @@ const UserPollOne = ({question, pollCode, handleNavigation}) => {
         { name: optionTwo, count: 0 },
         { name: optionThree, count: 0 },
         { name: optionFour, count: 0 }
-      ]),
-      createdBy: "codinglone"
+      ])
     })
       .then(function (response) {
         console.log(response);
