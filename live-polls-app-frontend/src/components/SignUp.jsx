@@ -41,6 +41,7 @@ const SignUp = () => {
       lastname: lastName,
       email: emailAddress,
       password,
+      role: "user"
     })
     .then(function (response) {
       setFirstName("");
