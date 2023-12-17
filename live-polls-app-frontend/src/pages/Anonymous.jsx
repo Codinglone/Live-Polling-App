@@ -51,12 +51,12 @@ const Anonymous = ({ pollCode }) => {
       setShowQuiz(false);
       setActiveNavLink("polls");
       setShowPollOptions(false);
-    } else if (activeLink === "quiz") {
-      setShowQuiz(true);
-      setShowPolls(false);
-      setActiveNavLink("quiz");
-      setShowPollOptions(false);
-    }
+   }  // else if (activeLink === "quiz") {
+    //   setShowQuiz(true);
+    //   setShowPolls(false);
+    //   setActiveNavLink("quiz");
+    //   setShowPollOptions(false);
+    // }
   };
 
   return (
@@ -65,7 +65,7 @@ const Anonymous = ({ pollCode }) => {
         activeNavLink={activeNavLink}
         handleNavigation={handleNavigation}
       />
-      {showQuiz && <AnonymousAnswer />}
+      {/* {showQuiz && <AnonymousAnswer />} */}
       {showPolls && <AnonymousPolls handlePolling={handlePolling} />}
       {showPollOptions && <AnonymousPollAnswer poll={pollData} />}
     </div>

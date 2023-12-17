@@ -27,14 +27,6 @@ const AnonymousNavbar = ({ handleNavigation, activeNavLink }) => {
             >
               Polls
             </span>
-            <span
-              className={`cursor-pointer text-md font-medium ${
-                activeNavLink === "quiz" ? "text-[#0066f7]" : ""
-              }`}
-              onClick={() => handleNavigation("quiz")}
-            >
-              Quiz
-            </span>
           </div>
         </div>
         <div className="w-1/3 flex items-center justify-end px-4 relative">
