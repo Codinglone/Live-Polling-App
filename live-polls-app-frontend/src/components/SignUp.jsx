@@ -4,6 +4,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { enqueueSnackbar } from 'notistack';
+import emailjs from '@emailjs/browser';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -14,7 +15,23 @@ const SignUp = () => {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
-
+  const sendWelcomeEmail = (toEmail, userName) => {
+    const serviceId = "service_slo5elm";
+    const templateId = "template_bnck06t";
+    const userId = "iq4REmtTF6WMMDFvW";
+  
+    emailjs.send(serviceId, templateId, {
+      to_email: toEmail,
+      user_name: userName,
+      message: "Welcome to the Live Polls App",
+    }, userId)
+    .then((response) => {
+      console.log("Email sent successfully:", response);
+    })
+    .catch((error) => {
+      console.error("Error sending email:", error);
+    });
+  };
   const baseUrl = "http://localhost:8080"
 
   const handleSubmit = (e) => {
@@ -32,6 +49,7 @@ const SignUp = () => {
       setPassword("");
       console.log(response);
       setResponse(response.data);
+      sendWelcomeEmail(emailAddress, `${firstName} ${lastName}`);
       enqueueSnackbar(response.data, { 
         variant: 'success'});
         navigate("/");
