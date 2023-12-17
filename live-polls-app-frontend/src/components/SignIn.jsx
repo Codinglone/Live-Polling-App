@@ -4,11 +4,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
-const SignIn = ({handleSelectPoll}) => {
+
+const SignIn = ({ handleSelectPoll }) => {
   const [pollCode, setPollCode] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const handlePollAnswer = (e) => {
@@ -16,44 +16,64 @@ const SignIn = ({handleSelectPoll}) => {
     handleSelectPoll(pollCode);
     setTimeout(() => {
       navigate("/anonymous");
-    }, 1500)
-  }
+    }, 1500);
+  };
+
   const baseUrl = "http://localhost:8080";
+
   const handleLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
     axios
       .get(`${baseUrl}/user`)
       .then(function (response) {
         console.log(response);
-        setUsers(response.data);
+        const users = response.data;
+
+        if (users.length >= 1) {
+          const foundUser = users.find(
+            (user) =>
+              user.email === email &&
+              user.password === password &&
+              user.role === "user"
+          );
+
+          if (foundUser) {
+            localStorage.setItem("user", email);
+            localStorage.setItem("role", "user");
+            navigate("/user");
+          } else {
+            const foundAdmin = users.find(
+              (user) =>
+                user.email === email &&
+                user.password === password &&
+                user.role === "admin"
+            );
+
+            if (foundAdmin) {
+              localStorage.setItem("user", email);
+              localStorage.setItem("role", "admin");
+              navigate("/admin");
+            } else {
+              enqueueSnackbar("Invalid email or password", {
+                variant: "error",
+              });
+            }
+          }
+        } else {
+          enqueueSnackbar("No users found", {
+            variant: "error",
+          });
+        }
       })
       .catch(function (error) {
         console.log(error);
         enqueueSnackbar(error.message, {
           variant: "error",
         });
-      })
+      });
+  };
 
-      if(users.length >= 1) {
-        users.map(user => {
-          if(user.email === email && user.password === password && user.role === "user") {
-            localStorage.setItem("user", email)
-            localStorage.setItem("role", "user")
-            navigate("/user");
-          }
-          else if(user.email === email && user.password === password && user.role === "admin") {
-            localStorage.setItem("user", email)
-            localStorage.setItem("role", "admin")
-            navigate("/admin");
-          }
-          else {
-            enqueueSnackbar("Invalid email or password", {
-              variant: "error",
-            });
-          }
-        })
-      }
-  }
   return (
     <>
       <main className="flex flex-row w-full justify-between">
@@ -70,7 +90,10 @@ const SignIn = ({handleSelectPoll}) => {
                   placeholder="Enter the code"
                   onInput={(e) => setPollCode(e.target.value)}
                 />
-                <button type="submit" className="w-[16%] bg-[#0066F7] h-10 rounded-full"></button>
+                <button
+                  type="submit"
+                  className="w-[16%] bg-[#0066F7] h-10 rounded-full"
+                ></button>
               </div>
             </form>
           </div>
@@ -108,7 +131,10 @@ const SignIn = ({handleSelectPoll}) => {
                 />
               </div>
               <div className="flex w-full justify-center my-6">
-                <button type="submit" className="w-full bg-[#0066F7] text-center uppercase text-white font-medium py-1 rounded">
+                <button
+                  type="submit"
+                  className="w-full bg-[#0066F7] text-center uppercase text-white font-medium py-1 rounded"
+                >
                   signin
                 </button>
               </div>
@@ -129,3 +155,4 @@ const SignIn = ({handleSelectPoll}) => {
 };
 
 export default SignIn;
+
