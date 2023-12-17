@@ -5,6 +5,7 @@ import SignUp from "./components/SignUp"
 import Admin from "./pages/Admin"
 import User from "./pages/User"
 import Anonymous from "./pages/Anonymous"
+import NotFound from "./components/NotFound"
 function App() {
   const [pollCode, setPollCode] = useState("")
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/anonymous" element={<Anonymous pollCode={pollCode} />} />
         <Route path="/user" element={<User pollcode={pollCode} />} />
+        <Route path="/*" element={<NotFound />} />
        </Routes>
     </>
   )
