@@ -81,12 +81,14 @@ const User = ({ pollcode }) => {
       setActiveNavLink("polls");
       setShowPollOptions(false);
       setShowCreatePoll(false);
+      setShowOptions(false);
     } else if (activeLink === "quiz") {
       setShowPolls(false);
       setShowQuiz(true);
       setActiveNavLink("quiz");
       setShowPollOptions(false);
       setShowCreatePoll(false);
+      setShowOptions(false);
     }
     else if (activeLink === "create-poll") {
       setShowCreatePoll(true);
@@ -94,6 +96,7 @@ const User = ({ pollcode }) => {
       setActiveNavLink("create-poll");
       setShowPollOptions(false);
       setShowQuiz(false);
+      setShowOptions(false);
     }
     
   };
