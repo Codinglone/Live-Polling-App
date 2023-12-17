@@ -80,9 +80,9 @@ const AdminPolls = ({ handlePollDetails }) => {
                 onClick={() => handlePollDetails(poll)}
                 className="w-full bg-white shadow rounded py-4 px-4 mt-10 flex flex-col"
               >
-                <p className="text-[#696F79] text-lg">{poll.question}</p>
+                <p className="text-[#696F79] text-lg cursor-pointer">{poll.question}</p>
                 <div className="flex justify-between my-2">
-                  <span className="text-xl font-bold">{poll.totalVotes}</span>
+                  <div className="text-xl"><span className="text-[#696F79] text-lg">Total Votes: {" "}</span><b>{poll.totalVotes}</b></div>
                   <button
                     onClick={() => handleEndPoll(poll)}
                     className="bg-[#0066F7] py-2 px-4 text-white rounded"

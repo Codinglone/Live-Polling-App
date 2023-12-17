@@ -71,9 +71,14 @@ const UserCreatePoll = ({ handleAddPoll }) => {
                 key={poll.pollCode}
                 className="w-full bg-white shadow py-8 rounded px-4 mt-2 flex flex-col"
               >
-                <p className="text-[#696F79] text-lg text-center">
+                <div className="flex justify-around">
+                <span className="text-[#696F79] text-lg text-center">
+                  Poll code: {" "}<b>{poll.pollCode}</b>
+                </span>
+                <span className="text-[#696F79] text-lg text-center">
                   {poll.question}
-                </p>
+                </span>
+                </div>
               </div>
             ))}
         </div>
