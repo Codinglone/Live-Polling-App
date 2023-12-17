@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import AnonymousNavbar from "../components/AnonymousNavbar";
 import AnonymousPolls from "../components/AnonymousPolls";
 import AnonymousPollAnswer from "../components/AnonymousPollAnswer";
-import AnonymousAnswer from "../components/AnonymousAnswer";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Anonymous = ({ pollCode }) => {
@@ -19,13 +18,11 @@ const Anonymous = ({ pollCode }) => {
       try {
         const response = await axios.get(`http://localhost:8080/polls`);
         if (pollCode) {
-          // Find the poll with matching pollCode
           const selectedPoll = response.data.find(
             (poll) => poll.pollCode === pollCode
           );
           if (selectedPoll) {
             setPollData(selectedPoll);
-            // alert(selectedPoll.pollCode);
             handlePolling(selectedPoll);
             
           }
@@ -51,12 +48,7 @@ const Anonymous = ({ pollCode }) => {
       setShowQuiz(false);
       setActiveNavLink("polls");
       setShowPollOptions(false);
-   }  // else if (activeLink === "quiz") {
-    //   setShowQuiz(true);
-    //   setShowPolls(false);
-    //   setActiveNavLink("quiz");
-    //   setShowPollOptions(false);
-    // }
+   } 
   };
 
   return (
@@ -65,7 +57,6 @@ const Anonymous = ({ pollCode }) => {
         activeNavLink={activeNavLink}
         handleNavigation={handleNavigation}
       />
-      {/* {showQuiz && <AnonymousAnswer />} */}
       {showPolls && <AnonymousPolls handlePolling={handlePolling} />}
       {showPollOptions && <AnonymousPollAnswer poll={pollData} />}
     </div>
